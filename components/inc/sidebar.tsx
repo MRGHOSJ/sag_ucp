@@ -163,7 +163,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <hr />
       {Elements.map((element) => {
         return (
-          <Box mx="4" my="4">
+          <Box mx="4" my="4" key={element.title}>
             <Text fontSize="xs" as="b">
               {element.title}
             </Text>
@@ -236,6 +236,7 @@ const NavItem = ({ icon, children, href, ul, ...rest }: NavItemProps) => {
                 href={underList.href}
                 style={{ textDecoration: "none" }}
                 _focus={{ boxShadow: "none" }}
+                key={underList.title}
               >
                 <MenuItem>{underList.title}</MenuItem>
               </Link>

@@ -49,7 +49,7 @@ export default function TablesAvatarTableRow(props: any) {
           badgeStyle = badgeConfig[2];
         }
         return (
-            <Td >
+            <Td key={index}>
               <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
                 <Flex direction="column">
                   <Text

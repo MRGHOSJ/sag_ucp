@@ -17,7 +17,7 @@ function TablesTableRow(props: any) {
           badgeStyle = badgeConfig[2];
         }
         return (
-          <Td pl={index == 0 ? "0px" : ""}>
+          <Td pl={index == 0 ? "0px" : ""} key={index}>
             <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
               <Flex direction="column">
                 <Text

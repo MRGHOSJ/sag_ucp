@@ -31,7 +31,7 @@ export default function BreadCrumb({
         {/* Map thru the list to show each element in breadCrumb */}
         {list.map((element: breadCrumbProps) => {
           return (
-            <BreadcrumbItem>
+            <BreadcrumbItem key={element.title}>
               <BreadcrumbLink href={element.href}>
                 {element.title}
               </BreadcrumbLink>

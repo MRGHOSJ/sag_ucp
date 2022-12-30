@@ -5,7 +5,7 @@ import Footer from "../../components/inc/footer";
 //Internal Components
 import NavBar from "../../components/inc/navbar";
 import Sidebar from "../../components/inc/sidebar";
-import Logs from "../../components/pages/logs";
+import Map from "../../components/pages/map";
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
               list={[{ title: "Dashboard", href: "/" },{ title: "Live", href: "" },{ title: "Map", href: "/map" }]}
             />
 
-            <Logs/>
+            <Map/>
 
             <Footer/> 
           </>

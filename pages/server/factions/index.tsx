@@ -25,7 +25,6 @@ export default function Home() {
               list={[{ title: "Dashboard", href: "/" },{ title: "Server", href: "" },{ title: "Factions", href: "/factions" }]}
             />
 
-            <Logs/>
 
             <Footer/> 
           </>

@@ -17,7 +17,6 @@ import {
   Badge,
   Link,
 } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 
@@ -29,10 +28,9 @@ export default function NavBar({ userName }: { userName: String }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} mx={4}>
+      <Box bg={useColorModeValue("gray.100", "gray.900")} sx={{ position: '-webkit-sticky', position: 'sticky', top: '0' }} zIndex="99" mx={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          {/* nav HamburgerIcon */}
-          <HamburgerIcon />
+          {/* nav HamburgerIcon */}<Box></Box>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>

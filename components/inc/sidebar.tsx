@@ -19,8 +19,13 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
 } from "@chakra-ui/react";
-import { ChevronDownIcon,HamburgerIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 
 //Type Import
 import { ElementProps, underListProps } from "../../types/sidebarType";
@@ -68,7 +73,7 @@ const Elements: Array<ElementProps> = [
             href: "/logs",
           },
         ],
-        icon: "radio_button_checked",
+        icon: "account_circle",
       },
       {
         title: "Server",
@@ -105,7 +110,7 @@ const Elements: Array<ElementProps> = [
 ];
 
 //Sidebar main class it will take the whole page as children and pass it in Box element
-export default function Sidebar({ children }: { children: ReactNode }) {
+export default function SidebarTest({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
@@ -129,7 +134,7 @@ export default function Sidebar({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       {/* All the children from Sidebar() are passed here */}
-      <Box ml={{ base: 0, md: 60 }} p="4" >
+      <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
     </Box>
@@ -164,20 +169,22 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {Elements.map((element) => {
         return (
           <Box mx="4" my="4" key={element.title}>
-            <Text fontSize="xs" as="b">
+            <Text fontSize="x-small" as="b">
               {element.title}
             </Text>
             {element.list.map((list) => {
               return (
-                <NavItem
-                  key={list.title}
-                  href={list.href}
-                  ul={list.ul}
-                  icon={list.icon}
-                  color="gray"
-                >
-                  {list.title}
-                </NavItem>
+                <Accordion allowToggle borderColor="transparent">
+                  <NavItem
+                    key={list.title}
+                    href={list.href}
+                    ul={list.ul}
+                    icon={list.icon}
+                    color="gray"
+                  >
+                    {list.title}
+                  </NavItem>
+                </Accordion>
               );
             })}
           </Box>
@@ -201,49 +208,52 @@ const NavItem = ({ icon, children, href, ul, ...rest }: NavItemProps) => {
   //if not it will create a direct link
   if (ul) {
     return (
-      <Menu>
-        <MenuButton
+      <AccordionItem>
+        <AccordionButton
+          px="0"
           align="center"
           py="4"
           fontSize="sm"
           role="group"
           cursor="pointer"
           _hover={{
-            bg: "cyan.400",
-            color: "white",
+            color: "cyan.400",
           }}
           as={Flex}
           color="gray"
         >
           <Flex>
-          {icon && (
-            <Box pr="2" pt="0.5" fontSize="lg" className="material-icons">
-              {icon}
-            </Box>
-          )}
-          <Box>
-          {children}
-          </Box>
-          
-          <ChevronDownIcon position="absolute" right="5" pt="1" fontSize="lg"/>
-          </Flex>
-        </MenuButton>
+            {icon && (
+              <Box pr="2" pt="0.5" fontSize="lg" className="material-icons">
+                {icon}
+              </Box>
+            )}
+            {children}
 
-        <MenuList>
-          {ul.map((underList) => {
-            return (
+            <AccordionIcon position="absolute" right="5" pt="1" fontSize="lg" />
+          </Flex>
+        </AccordionButton>
+
+        {ul.map((underList) => {
+          return (
+            <AccordionPanel pb="3" pt="0">
               <Link
                 href={underList.href}
                 style={{ textDecoration: "none" }}
+                _hover={{
+                  color: "cyan.400",
+                }}
+                fontSize="sm"
+                px="2.5"
                 _focus={{ boxShadow: "none" }}
                 key={underList.title}
               >
-                <MenuItem>{underList.title}</MenuItem>
+                {underList.title}
               </Link>
-            );
-          })}
-        </MenuList>
-      </Menu>
+            </AccordionPanel>
+          );
+        })}
+      </AccordionItem>
     );
   } else
     return (
@@ -259,8 +269,7 @@ const NavItem = ({ icon, children, href, ul, ...rest }: NavItemProps) => {
           role="group"
           cursor="pointer"
           _hover={{
-            bg: "cyan.400",
-            color: "white",
+            color: "cyan.400",
           }}
           {...rest}
         >
@@ -293,7 +302,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       justifyContent="flex-start"
       {...rest}
     >
-      <HamburgerIcon fontSize="lg" onClick={onOpen} aria-label="open menu"/>
+      <HamburgerIcon fontSize="lg" onClick={onOpen} aria-label="open menu" />
       <Box ml="5">
         <Image
           boxSize="50px"
